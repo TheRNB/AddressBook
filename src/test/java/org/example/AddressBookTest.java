@@ -43,4 +43,14 @@ public class AddressBookTest {
         ab.add(new BuddyInfo());
         assertEquals(1, ab.size());
     }
+
+    @Test
+    public void getBuddiesWorks() {
+        AddressBook ab = new AddressBook();
+        BuddyInfo b = new BuddyInfo();
+        b.setName("Nina");
+        b.setPhone("1111111111");
+        ab.add(b);
+        assertSame(b, ab.getBuddies().get(0));
+    }
 }

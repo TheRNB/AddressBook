@@ -1,29 +1,40 @@
 package org.example;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "buddy_info")
 public class BuddyInfo {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String phone;
 
-    public BuddyInfo() {
-        this.name = null;
-        this.phone = null;
-        return;
-    }
+    @ManyToOne
+    @JoinColumn(
+            name = "addressbook_id",
+            foreignKey = @ForeignKey(name = "fk_buddyinfo_addressbook")
+    )
+    private AddressBook addressBook;
 
-    public void setName (String input) {
-        this.name = input;
-        return;
-    }
+    public BuddyInfo() { this.name = null; this.phone = null; }
 
-    public void setPhone (String input) {
-        input = cleanPhone(input);
-        this.phone = input;
-        return;
-    }
+    public AddressBook getAddressBook() { return addressBook; }
+    public void setAddressBook(AddressBook ab) { this.addressBook = ab; }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
+    public void setName(String input) { this.name = input; }
 
     public String getPhone() { return phone; }
+    public void setPhone(String input) { this.phone = cleanPhone(input); }
 
     private String cleanPhone(String input) {
         if (input == null || input.isEmpty()) return input;
@@ -39,4 +50,4 @@ public class BuddyInfo {
     public String toString() {
         return this.name + " => " + this.phone;
     }
-};
+}

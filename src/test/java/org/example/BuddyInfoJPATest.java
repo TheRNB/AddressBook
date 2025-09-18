@@ -1,19 +1,34 @@
 package org.example;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import org.junit.*;
 import jakarta.persistence.*;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        EntityManagerFactory emf;
-        EntityManager em;
-        emf = Persistence.createEntityManagerFactory("addressbookPU");
-        em = emf.createEntityManager();
+public class BuddyInfoJPATest {
+    private static EntityManagerFactory emf;
+    private EntityManager em;
 
+    @BeforeClass
+    public static void setUpClass() {
+        emf = Persistence.createEntityManagerFactory("addressbookPU");
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        if (emf != null) emf.close();
+    }
+
+    @Before
+    public void setUp() {
+        em = emf.createEntityManager();
+    }
+
+    @After
+    public void tearDown() {
+        if (em != null) em.close();
+    }
+
+    @Test
+    public void persistAndRetrieveBuddy() {
         BuddyInfo buddy = new BuddyInfo();
         buddy.setName("Nina");
         buddy.setPhone("+15559990100");
@@ -23,25 +38,18 @@ public class Main {
         em.getTransaction().commit();
 
         Long id = buddy.getId();
-        System.out.println(id);
+        Assert.assertNotNull(id);
 
-        // forcing a DB read
         em.clear();
 
         BuddyInfo found = em.find(BuddyInfo.class, id);
-        System.out.println(found);
+        Assert.assertNotNull(found);
+        Assert.assertEquals("Nina", found.getName());
 
-        // general :name parameter finding query
         TypedQuery<BuddyInfo> q = em.createQuery(
                 "select b from BuddyInfo b where b.name = :name", BuddyInfo.class);
-
         q.setParameter("name", "Nina");
-
-        // we are expecting one result only obv!
         BuddyInfo byName = q.getSingleResult();
-        System.out.println(byName.getName());
-
-        em.close();
-        emf.close();
+        Assert.assertEquals(id, byName.getId());
     }
 }

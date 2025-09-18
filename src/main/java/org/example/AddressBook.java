@@ -1,33 +1,31 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "address_book")
 public class AddressBook {
-    private ArrayList<BuddyInfo> buddies = null;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public AddressBook() {
-        this.buddies = new ArrayList<BuddyInfo>();
-        return;
-    }
+    private List<BuddyInfo> buddies = new ArrayList<>();
+
+    public AddressBook() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public void add(BuddyInfo buddy) {
-        if (buddy == null) {
-            // RAISE WARNING ()
-            return;
-        }
-        buddies.add(buddy);
-        return;
+        if (buddy != null) buddies.add(buddy);
     }
 
     public void remove(BuddyInfo buddy) {
         buddies.remove(buddy);
-        return;
     }
 
-    public BuddyInfo get(int index) {
-        return buddies.get(index);
-    }
-
-    public int size() {
-        return buddies.size();
-    }
-};
+    public BuddyInfo get(int index) { return buddies.get(index); }
+    public int size() { return buddies.size(); }
+    public List<BuddyInfo> getBuddies() { return buddies; }
+}
