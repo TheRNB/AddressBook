@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Main_deprecated {
     public static void main(String[] args) {
         EntityManagerFactory emf;
         EntityManager em;

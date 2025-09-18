@@ -9,10 +9,8 @@ public class BuddyInfo {
     @GeneratedValue
     private Long id;
 
-    @Column
     private String name;
 
-    @Column
     private String phone;
 
     @ManyToOne

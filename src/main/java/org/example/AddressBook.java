@@ -10,6 +10,7 @@ public class AddressBook {
     @GeneratedValue
     private Long id;
 
+    @OneToMany(mappedBy = "addressBook", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BuddyInfo> buddies = new ArrayList<>();
 
     public AddressBook() {}
@@ -17,7 +18,7 @@ public class AddressBook {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public void add(BuddyInfo buddy) {
+    public void addBuddy(BuddyInfo buddy) {
         if (buddy != null) buddies.add(buddy);
     }
 
