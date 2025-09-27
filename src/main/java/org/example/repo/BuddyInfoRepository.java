@@ -1,6 +1,6 @@
 package org.example.repo;
 
-import org.example.BuddyInfo;
+import org.example.model.BuddyInfo;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 

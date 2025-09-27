@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.AddressBook;
+import org.example.model.BuddyInfo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

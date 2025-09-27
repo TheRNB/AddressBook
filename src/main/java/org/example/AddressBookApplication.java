@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.AddressBook;
+import org.example.model.BuddyInfo;
 import org.example.repo.AddressBookRepository;
 import org.example.repo.BuddyInfoRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -8,10 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class AddressBookApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(AddressBookApplication.class, args);
-    }
+public class AddressBookApplication { public static void main(String[] args) {
+    SpringApplication.run(AddressBookApplication.class, args);
+}
 
     @Bean
     CommandLineRunner demo(AddressBookRepository books, BuddyInfoRepository buddies) {
@@ -34,4 +35,5 @@ public class AddressBookApplication {
             buddies.findByName("Nina").forEach(System.out::println);
         };
     }
+
 }

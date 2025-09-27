@@ -1,5 +1,7 @@
-package org.example;
+package org.example.model;
 import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "buddy_info")
@@ -13,11 +15,13 @@ public class BuddyInfo {
 
     private String phone;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(
             name = "addressbook_id",
             foreignKey = @ForeignKey(name = "fk_buddyinfo_addressbook")
     )
+
     private AddressBook addressBook;
 
     public BuddyInfo() { this.name = null; this.phone = null; }
