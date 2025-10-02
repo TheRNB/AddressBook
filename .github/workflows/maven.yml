@@ -60,4 +60,4 @@ jobs:
           app-name: 'Addressbookwebapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: 'target/*.jar'
+          package: 'target/testJava-runner.jar'
