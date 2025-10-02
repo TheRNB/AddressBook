@@ -34,7 +34,7 @@ class AddressBookApiIT {
         assertTrue(bookId > 0);
 
         String buddyJson = """
-                { "name": "Nina", "phone": "+15559990100"}""";
+                { "name": "Nina", "phone": "+15559990100", "address": "123 Maple St" }""";
         HttpHeaders h = new HttpHeaders();
         h.setContentType(MediaType.APPLICATION_JSON);
         ResponseEntity<String> addResp = http.postForEntity(

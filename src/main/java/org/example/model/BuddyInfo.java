@@ -15,6 +15,8 @@ public class BuddyInfo {
 
     private String phone;
 
+    private String address;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(
@@ -37,6 +39,9 @@ public class BuddyInfo {
 
     public String getPhone() { return phone; }
     public void setPhone(String input) { this.phone = cleanPhone(input); }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 
     private String cleanPhone(String input) {
         if (input == null || input.isEmpty()) return input;
