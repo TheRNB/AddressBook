@@ -22,7 +22,7 @@ public class AddressBookTest {
         ab.addBuddy(a);
         ab.addBuddy(b);
         ab.addBuddy(c);
-        ab.remove(b);
+        ab.removeBuddy(b);
         assertSame(a, ab.get(0));
         assertSame(c, ab.get(1));
         assertEquals(2, ab.size());
