@@ -21,9 +21,11 @@ public class AddressBookApplication { public static void main(String[] args) {
             BuddyInfo nina = new BuddyInfo();
             nina.setName("Nina");
             nina.setPhone("+15559990100");
+            nina.setAddress("Shiraz");
             BuddyInfo alex = new BuddyInfo();
             alex.setName("Alex");
             alex.setPhone("+15558880200");
+            alex.setAddress("Isfahan");
             book.addBuddy(nina);
             book.addBuddy(alex);
             books.save(book);

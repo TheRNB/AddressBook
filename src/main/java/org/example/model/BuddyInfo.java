@@ -55,6 +55,6 @@ public class BuddyInfo {
 
     @Override
     public String toString() {
-        return this.name + " => " + this.phone;
+        return this.name + " => " + this.phone + " , " + this.address;
     }
 }
