@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Address Books</title>
+</head>
+<body>
+<h1>Address Books</h1>
+<h2>Create a New Address Book</h2>
+<p>Click the button below to create a new address book:</p>
+<form id="createForm" th:action="@{/view/addressbook/create}" method="post">
+    <button type="submit">Create New Address Book</button>
+</form>
+
+<h2>Existing Address Books</h2>
+<div id="addressBookContainer">
+    <ul id="addressBookList" th:unless="${#lists.isEmpty(addressBooks)}">
+        <li th:each="book : ${addressBooks}">
+            <a th:href="@{/view/addressbook/{id}/view(id=${book.id})}">
+                Address Book <span th:text="${book.id}"></span>
+            </a>
+        </li>
+    </ul>
+    <div id="noBooksMsg" th:if="${#lists.isEmpty(addressBooks)}">
+        *(No address books yet)*
+    </div>
+</div>
+
+<script th:src="@{/js/addressbooks.js}"></script>
+</body>
+</html>

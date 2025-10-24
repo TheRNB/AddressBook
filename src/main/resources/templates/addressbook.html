@@ -7,12 +7,37 @@
 <body>
 <h1>Address Book ID: <span th:text="${addressBook.id}"></span></h1>
 <h2>Buddies:</h2>
-<ul>
+<ul id="buddyList">
     <li th:each="buddy : ${addressBook.buddies}">
         <strong>Name:</strong> <span th:text="${buddy.name}"></span>,
-        <strong>Phone:</strong> <span th:text="${buddy.phone}"></span>
+        <strong>Phone:</strong> <span th:text="${buddy.phone}"></span>,
+        <strong>Address:</strong> <span th:text="${buddy.address}"></span>
     </li>
-    <li th:if="${#lists.isEmpty(addressBook.buddies)}">*(No buddies in this address book)*</li>
+    <li id="noBuddyMsg" th:if="${#lists.isEmpty(addressBook.buddies)}">
+        *(No buddies in this address book)*
+    </li>
 </ul>
+
+<h3>Add a Buddy</h3>
+<form id="addBuddyForm" th:action="@{/view/addressbook/{id}/addbuddy(id=${addressBook.id})}" method="post">
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
+    </p>
+    <p>
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone" required />
+    </p>
+    <p>
+        <label for="address">Address:</label>
+        <input type="text" name="address" id="address" />
+    </p>
+    <button type="submit">Add Buddy</button>
+</form>
+
+<script th:inline="javascript">
+    const ADDRESSBOOK_ID = [[${addressBook.id}]];
+</script>
+<script th:src="@{/js/addressbook.js}"></script>
 </body>
 </html>
